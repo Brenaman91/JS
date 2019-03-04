@@ -255,7 +255,7 @@ function palindrom(texto){
     console.log( ar1.join("")===ar2.join(""));
 }
 palindrom("hol a loh");
- */
+ 
 // EJERCICIO 16  se soluciona con toLowerCase o toUpperCase
 
 // EJERCICIO 18 
@@ -273,12 +273,12 @@ function esPar(n){
     console.log(ar1) ;
 }
 mifilter([1,2,3,4],esPar())
-//PROFESOR*/
-function mifilter(array, fn){
+//PROFESOR
+function mifilter(array, fn=(n)){
     var ar=[];
     array.forEach(function(i){
-        if(fn(i)){
-            ar.push(i);
+        if(fn(array.values(i))){
+            ar.push(array.values(i));
         }
     }) 
     return ar;
@@ -286,7 +286,7 @@ function mifilter(array, fn){
 console.log(mifilter([1,2,3,4],esPar()));
 
 
-//FUNCION FLEXHA
+//FUNCION FLECHA
 
 a=function(){
     console.log('a');
@@ -303,5 +303,66 @@ d=(num,pos)=>{
 e=(n1,n2)=>{
     return n1+n2;
 }
+*/
+
+        // CLASES
+
+class Coche{
+    constructor(marca,modelo,sonido,color,duenio){
+        this.marca=marca; // metodo publco
+        this.nmodelo=modelo;
+        this.sonido=sonido;
+        this.color=color;
+        var _duenio=duenio;// con var la propiedad es privada
+        this.getDuenio=()=>{
+            return duenio;
+        }
+        this.setDuenio=(duenio)=>{
+            _duenio=duenio;
+        }
+    }
+    //Metodo estático: todos los coches van a tener el mismo num de ruedas(hay que hacerlo con el nombre de l a clase)
+
+    static getNumRuedas(){
+        return 4;
+    }
 
 
+    pitar(){
+        console.log(this.sonido);
+        }
+}
+const audi=new Coche("Audi","A4","pipi","azul","PEPE");
+audi.pitar();
+console.log(Coche.getNumRuedas());
+console.log(audi.getDuenio());
+audi.setDuenio("JUAN");
+console.log(audi.getDuenio());
+
+// HERENCIA
+class Rectangulo{
+    constructor(lado,altura){
+        this.lado=lado;
+        this.altura=altura;
+    }
+    getArea(){
+        return this.lado*this.altura;
+    }
+}
+
+class Cuadrado extends Rectangulo{
+    constructor(lado){
+        super(lado,lado);
+    }
+}
+
+const C1=new Cuadrado(3);
+console.log(C1.getArea());
+
+// llamada al modulo
+//import{Mascota} from "./mascota"; HAY QUE CAMBIAR LA EXTESION DE JS A MJS
+const mod1=require("./mascota");
+const perro=new mod1.Mascota("Toby","perro");
+const gato=new mod1.Mascota("Black","gato");
+console.log(perro);
+console.log(gato);
